@@ -1,0 +1,8 @@
+{
+    "name": "com.crystalgrape.sqliteasync",
+    "displayName": "SQLiteAsync",
+    "version": "1.0.0",
+    "unity": "2019.4",
+    "description": "SQLiteAsync",
+    "hideInEditor": true
+  }
