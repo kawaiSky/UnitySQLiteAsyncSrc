@@ -288,7 +288,6 @@ namespace SQLite
 				throw new InvalidOperationException ("DatabasePath must be specified");
 
 			DatabasePath = connectionString.DatabasePath;
-			UnityEngine.Debug.LogError("LibPath" + SQLite3.LibraryPath);
 			LibVersionNumber = SQLite3.LibVersionNumber ();
 
 #if NETFX_CORE
@@ -4002,10 +4001,10 @@ namespace SQLite
 			MultiThread = 2,
 			Serialized = 3
 		}
-#if UNITY_ANDROID && !UNITY_EDITOR
-		public const string LibraryPath = "sqliteX";
+#if UNITY_ANDROID && !UNITY_EDITOR && SQLITE_X
+		const string LibraryPath = "sqliteX";
 #else
-		public const string LibraryPath = "sqlite3";
+		const string LibraryPath = "sqlite3";
 #endif
 
 #if !USE_CSHARP_SQLITE && !USE_WP8_NATIVE_SQLITE && !USE_SQLITEPCL_RAW
