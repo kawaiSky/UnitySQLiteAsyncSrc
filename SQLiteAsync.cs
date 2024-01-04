@@ -227,20 +227,12 @@ namespace SQLite
 
 		UniTask<T> WriteAsync<T> (Func<SQLiteConnectionWithLock, T> write)
 		{
-			return UniTask.RunOnThreadPool (
-#if SQLITE_DEBUG
-				async 
-#endif
-					() => {
-					var conn = GetConnection ();
-					using (conn.Lock ())
-					{
-#if SQLITE_DEBUG
-						await UniTask.Delay(TimeSpan.FromSeconds(10));
-#endif
-						return write (conn);
-					}
-				});
+			return UniTask.RunOnThreadPool (() => {
+				var conn = GetConnection ();
+				using (conn.Lock ()) {
+					return write (conn);
+				}
+			});
 		}
 
 		/// <summary>
